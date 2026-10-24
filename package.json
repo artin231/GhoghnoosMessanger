@@ -1,12 +1,15 @@
 {
   "scripts": {
-    "postinstall": "prisma skills sync || exit 0"
+    "postinstall": "prisma generate || exit 0",
+    "web": "concurrently \"npm run dev --prefix Back-end\" \"npm run dev --prefix Front-end\""
   },
   "devDependencies": {
+    "concurrently": "^10.0.5",
     "prisma": "^7.10.0"
   },
   "dependencies": {
     "@prisma/client": "^7.10.0",
-    "dotenv": "^17.4.2"
+    "dotenv": "^17.4.2",
+    "socket.io-client": "^4.8.3"
   }
 }

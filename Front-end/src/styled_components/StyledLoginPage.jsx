@@ -29,6 +29,11 @@ export let InputItem = styled.input`
     -webkit-background-clip: text !important;
     transition: background-color 5000s ease-in-out 0s;
   }
+  @media(max-width:400px){
+  	font-size:15px;
+	height:40px;
+  	padding-right:18%;
+  }
 `;
 
 
@@ -44,6 +49,11 @@ export let FormLogin = styled.form
     align-items:center;
     gap:30px;
     padding-bottom:10px;
+    margin:5%;
+    @media(max-width:400px){
+    	gap:10px;
+	min-height:300px;
+    }
     `
 
 
@@ -58,7 +68,8 @@ export let FormLogin2 = styled.form
     flex-direction:column;
     align-items:center;
     gap:20px;
-    padding-bottom:10px;   `
+    padding-bottom:10px;   
+`
 
 
 
@@ -131,11 +142,17 @@ export let InputHandelDiv = styled.div
     justify-content:center;
     flex-direction:column;
     gap:40px;
+    @media (max-width:400px){
+    	gap:10px;
+    }
 `
 
 export let ImgLogoInput = styled.img
 `
 	width:200px;
+	@media(max-width:400px){
+	width:150px;
+	}
 
 `
 export let PLinkElement = styled.p

@@ -8,7 +8,7 @@ import { useEffect } from 'react';
 export let SignUpPage = () => {
     const navigate = useNavigate();
     useEffect(() => {
-        document.title = "Sign up | Nakheir";
+        document.title = "Sign up | Simorgh"; // title
         const storedName = sessionStorage.getItem('user');
         if (storedName) {
             navigate('/');

@@ -1,18 +1,17 @@
 @font-face {
     font-family: 'iran_m';
-    src: url('../font/IRANYekanX-Medium.woff');
+    src: url('../font/Alibaba-Bold.ttf');
+    font-weight: 100;
 }
 
-@font-face {
-    font-family: 'iran_l';
-    src: url('../font/IRANYekanX-Light.woff');
+::-webkit-scrollbar{
+    width: 10px;
+    background-color: transparent;
 }
-
-@font-face {
-    font-family: 'vazir_b';
-    src: url('../font/IRANYekanX-Bold.woff');
+::-webkit-scrollbar-thumb{
+    background-color: #272727;
+    border-radius: 100px;
 }
-
 * {
     font-family: 'iran_m';
     margin: 0;
@@ -41,12 +40,7 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    background: linear-gradient(135deg,
-            #351066 0%,
-            #120D28 28%,
-            #070814 52%,
-            #0B0A1A 72%,
-            #4A0F78 100%);
+    background-image: url(../../public/bg1.png);
 }
 
 .holder {
@@ -55,12 +49,8 @@ body {
     display: flex;
     gap: 1%;
     padding: 2%;
-    background: linear-gradient(135deg,
-            #050611 0%,
-            #0B0920 45%,
-            #180A35 75%,
-            #2A0B55 100%);
-    ;
+background-image: url(../../public/bg1.png);
+
 }
 
 .fa-user,.fa-lock{
@@ -90,4 +80,26 @@ background-color:#14143b;
 }
 #Little{
 font-size:19px;
+}
+
+.iconHandler{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 50px;
+}
+
+.mainpage_avatar{
+    width: 80px;
+    height: 80px;
+    border-radius: 100%;
+}
+
+#inSideInputCenter{
+    position: absolute;
+    right:2%;
+    top:25%;
+    font-size:25px;
+    transform: rotate(45deg);
+    color: gray !important;
 }

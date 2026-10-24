@@ -1,10 +1,10 @@
 import { useEffect } from "react";
-import { LeftMainPart, CenterMainPart, RightMainPart, Img_avatar, Div_Img, Avatar,ItemHandlerDiv, ItemLeft,LastLeftItem, LastMatnLeft,ImgLeftLast} from "../../styled_components/StyledMainPage";
+import { CenterMainPart, RightMainPart, RightUpDiv, RightLogoImg, ChatList, ItemChatList, RightLogoDiv, ItemChatPic, ItemChatTextTitle, ItemChatTextDiv, ItemChatTextP, CenterInputDiv, CenterInputItem, CenterChatMessageList, CenterChatMessageItemSelf, CenterChatMessageItemUser, CenterChatMessageItem, CenterChatMessageItemSelfTextMain, CenterChatMessageItemSelfTextBelow ,CenterChatMessageItemUserTextMain,CenterChatMessageItemUserTextBelow} from "../../styled_components/StyledMainPage";
 import { io } from 'socket.io-client';
 import { redirect, useNavigate } from "react-router-dom";
 import { icon } from '@fortawesome/fontawesome-svg-core';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faUser, faLock, faEnvelope, faMessage,faComments, faUsers,faPhone,faBoxArchive,faGear } from '@fortawesome/free-solid-svg-icons';
+import { faUser, faLock, faEnvelope, faMessage, faComments, faUsers, faPhone, faBoxArchive, faGear, faSearch, faMicrophone,faPaperPlane } from '@fortawesome/free-solid-svg-icons';
 
 let Main = () => {
     // const socket = io(`http://${window.location.host}`);
@@ -25,52 +25,206 @@ let Main = () => {
     let login = false;
     let navigate = useNavigate();
     useEffect(() => {
-        if (!sessionStorage.getItem('user')) {
-            navigate('/login');
-        }
+        fetch('http://127.0.0.1:8000/api/account/profile/', {
+            method: "GET",
+            credentials: "include"
+        })
+            .then((res) => {
+                return res.json();
+            })
+            .then((dt) => {
+                console.log(dt);
+
+                if (dt.error === 'You must be logged in.') {
+                    navigate('/login');
+                }
+            })
+            .catch(err => {
+                console.log(err)
+            })
     }, [navigate]);
 
-    const user = sessionStorage.getItem('user') ? JSON.parse(sessionStorage.getItem('user')) : null;
-    if (!user) return <div>Loading...</div>;
     return (
         <>
             <div className="holder">
-                <LeftMainPart>
-                    <Div_Img>
-                        <Avatar>
-                            <Img_avatar src="/src/assets/default-avatar-profile-icon-social-media-user-image-gray-avatar-icon-blank-profile-silhouette-illustration-vector.jpg" alt="" />
-                        </Avatar>
-                        <h1>{storedName.name}</h1>
-                    </Div_Img>
-	    	    <ItemHandlerDiv>
-	    <ItemLeft id='ActiveLeft' >
-	    <h1>پیام ها</h1>
-	    <FontAwesomeIcon icon={faComments} />
-	    </ItemLeft>
-	    <ItemLeft  >
-            	<h1>مخاطبین</h1>
-            	<FontAwesomeIcon icon={ faUser } id='UserLeft' />
-            </ItemLeft>
-	    <ItemLeft>
-            	<h1 id="Little">پیام های ذخیره شده</h1>
-            	<FontAwesomeIcon icon={ faBoxArchive } id='UserLeft' />
-            </ItemLeft>
-	    <ItemLeft>
-            	<h1>تنظیمات </h1>
-            	<FontAwesomeIcon icon={ faGear } id='UserLeft' />
-            </ItemLeft>
-	    </ItemHandlerDiv>
-	    <LastLeftItem>
+                <CenterMainPart>
+                    <CenterChatMessageList>
+                        <CenterChatMessageItem>
+                            <CenterChatMessageItemSelf>
+                                <CenterChatMessageItemSelfTextMain>
+                                    شایان واقعا روانیه
+                                </CenterChatMessageItemSelfTextMain>
+                                <CenterChatMessageItemSelfTextBelow>
+                                    ۱۷:۴۵
+                                </CenterChatMessageItemSelfTextBelow>
+                            </CenterChatMessageItemSelf>
+                        </CenterChatMessageItem>
 
-	   <ImgLeftLast src='/src/assets/1787474457 (Edited)-no-bg.png'/>
-	    <LastMatnLeft>
-	    <h1>پیام رسان نخیر</h1>
-	    <p>با پیام رسان نخیر مهارت نخیر گفتن خود را افزایش دهید</p>
-	    </LastMatnLeft>
-	    </LastLeftItem>
-                </LeftMainPart>
-                <CenterMainPart></CenterMainPart>
-                <RightMainPart></RightMainPart>
+                        <CenterChatMessageItem>
+                            <CenterChatMessageItemUser>
+                                <CenterChatMessageItemUserTextMain>
+                                    شایا واقا روانیهinmweofngqegbiqewbgiwfewfefreeeeeeeeeeub2igb4i2ewbfguy4eb2uo4bvtguoy24byg
+                                </CenterChatMessageItemUserTextMain>
+                                <CenterChatMessageItemUserTextBelow>
+                                    ۱۷:۴۵
+                                </CenterChatMessageItemUserTextBelow>
+                            </CenterChatMessageItemUser>
+                        </CenterChatMessageItem>
+
+                        <CenterChatMessageItem>
+                            <CenterChatMessageItemSelf>
+                                <CenterChatMessageItemSelfTextMain>
+                                    شایان واقعا روانیه
+                                </CenterChatMessageItemSelfTextMain>
+                                <CenterChatMessageItemSelfTextBelow>
+                                    ۱۷:۴۵
+                                </CenterChatMessageItemSelfTextBelow>
+                            </CenterChatMessageItemSelf>
+                        </CenterChatMessageItem>
+
+                        <CenterChatMessageItem>
+                            <CenterChatMessageItemSelf>
+                                <CenterChatMessageItemSelfTextMain>
+                                    شایان واقعا روانیه
+                                </CenterChatMessageItemSelfTextMain>
+                                <CenterChatMessageItemSelfTextBelow>
+                                    ۱۷:۴۵
+                                </CenterChatMessageItemSelfTextBelow></CenterChatMessageItemSelf>
+                        </CenterChatMessageItem>
+
+                        <CenterChatMessageItem>
+                            <CenterChatMessageItemUser>
+                                <CenterChatMessageItemUserTextMain>
+                                    شایان واقعا روانیه
+                                </CenterChatMessageItemUserTextMain>
+                                <CenterChatMessageItemUserTextBelow>
+                                    ۱۷:۴۵
+                                </CenterChatMessageItemUserTextBelow></CenterChatMessageItemUser>
+                        </CenterChatMessageItem>
+
+                        <CenterChatMessageItem>
+                            <CenterChatMessageItemSelf>
+                                <CenterChatMessageItemSelfTextMain>
+                                    شایان واقعا روانیه
+                                </CenterChatMessageItemSelfTextMain>
+                                <CenterChatMessageItemSelfTextBelow>
+                                    ۱۷:۴۵
+                                </CenterChatMessageItemSelfTextBelow>
+                            </CenterChatMessageItemSelf>
+                        </CenterChatMessageItem>
+
+                    </CenterChatMessageList>
+                    <CenterInputDiv>
+                        <FontAwesomeIcon icon={faPaperPlane} id="inSideInputCenter" />
+                        <CenterInputItem type="text" placeholder="پیام خود را بنویسید ..." />
+                    </CenterInputDiv>
+                </CenterMainPart>
+                <RightMainPart>
+                    <RightUpDiv>
+                        <img className="mainpage_avatar" src="/src/assets/default-avatar-profile-icon-social-media-user-image-gray-avatar-icon-blank-profile-silhouette-illustration-vector.jpg" alt="" />
+                        <RightLogoDiv>
+                            <h1 style={{ 'fontSize': '50px' }}>سیمرغ</h1>
+                        </RightLogoDiv>
+
+                        <div className="iconHandler">
+                            <FontAwesomeIcon icon={faSearch} />
+                        </div>
+                    </RightUpDiv>
+                    <ChatList>
+                        <ItemChatList>
+
+                            <ItemChatTextDiv>
+
+                                <ItemChatTextTitle>اکبر</ItemChatTextTitle>
+                                <ItemChatTextP>اکبر : امروز وضعیت چطوریه gwrgwrgwrgwrgwrg؟ </ItemChatTextP>
+                            </ItemChatTextDiv>
+
+                            <ItemChatPic src="/src/assets/default-avatar-profile-icon-social-media-user-image-gray-avatar-icon-blank-profile-silhouette-illustration-vector.jpg" alt="" />
+                        </ItemChatList>
+                        <ItemChatList>
+
+                            <ItemChatTextDiv>
+
+                                <ItemChatTextTitle>اصغر</ItemChatTextTitle>
+                                <ItemChatTextP> اصغر : داش چرا نیومدیاصعابهثابهضثالهعثضهلاثهضلاذهع؟ </ItemChatTextP>
+                            </ItemChatTextDiv>
+
+                            <ItemChatPic src="/src/assets/default-avatar-profile-icon-social-media-user-image-gray-avatar-icon-blank-profile-silhouette-illustration-vector.jpg" alt="" />
+                        </ItemChatList>
+                        <ItemChatList>
+
+                            <ItemChatTextDiv>
+
+                                <ItemChatTextTitle>ممد</ItemChatTextTitle>
+                                <ItemChatTextP>ممد :  داش زنده ای؟ </ItemChatTextP>
+                            </ItemChatTextDiv>
+
+                            <ItemChatPic src="/src/assets/default-avatar-profile-icon-social-media-user-image-gray-avatar-icon-blank-profile-silhouette-illustration-vector.jpg" alt="" />
+                        </ItemChatList>
+                        <ItemChatList>
+
+                            <ItemChatTextDiv>
+
+                                <ItemChatTextTitle>آرین</ItemChatTextTitle>
+                                <ItemChatTextP>آرین : برو بابا من بهترینم</ItemChatTextP>
+                            </ItemChatTextDiv>
+
+                            <ItemChatPic src="/src/assets/default-avatar-profile-icon-social-media-user-image-gray-avatar-icon-blank-profile-silhouette-illustration-vector.jpg" alt="" />
+                        </ItemChatList>
+                        <ItemChatList>
+
+                            <ItemChatTextDiv>
+
+                                <ItemChatTextTitle>شایان</ItemChatTextTitle>
+                                <ItemChatTextP>شایان :  واقعا آرین بهترینه؟ </ItemChatTextP>
+                            </ItemChatTextDiv>
+
+                            <ItemChatPic src="/src/assets/default-avatar-profile-icon-social-media-user-image-gray-avatar-icon-blank-profile-silhouette-illustration-vector.jpg" alt="" />
+                        </ItemChatList>
+                        <ItemChatList>
+
+                            <ItemChatTextDiv>
+
+                                <ItemChatTextTitle>نقطه</ItemChatTextTitle>
+                                <ItemChatTextP>نقطه : نه کد هام خطاش مضرب ۵ نی</ItemChatTextP>
+                            </ItemChatTextDiv>
+
+                            <ItemChatPic src="/src/assets/default-avatar-profile-icon-social-media-user-image-gray-avatar-icon-blank-profile-silhouette-illustration-vector.jpg" alt="" />
+                        </ItemChatList>
+                        <ItemChatList>
+
+                            <ItemChatTextDiv>
+
+                                <ItemChatTextTitle>سلام</ItemChatTextTitle>
+                                <ItemChatTextP>سلام : خداحافظ</ItemChatTextP>
+                            </ItemChatTextDiv>
+
+                            <ItemChatPic src="/src/assets/default-avatar-profile-icon-social-media-user-image-gray-avatar-icon-blank-profile-silhouette-illustration-vector.jpg" alt="" />
+                        </ItemChatList>
+                        <ItemChatList>
+
+                            <ItemChatTextDiv>
+
+                                <ItemChatTextTitle>مرتضی</ItemChatTextTitle>
+                                <ItemChatTextP>مرتضی : پیام رسان بدی هست</ItemChatTextP>
+                            </ItemChatTextDiv>
+
+                            <ItemChatPic src="/src/assets/default-avatar-profile-icon-social-media-user-image-gray-avatar-icon-blank-profile-silhouette-illustration-vector.jpg" alt="" />
+                        </ItemChatList>
+                        <ItemChatList>
+
+                            <ItemChatTextDiv>
+
+                                <ItemChatTextTitle>ناشناس</ItemChatTextTitle>
+                                <ItemChatTextP>ناشناس : غرییبب آشناااا</ItemChatTextP>
+                            </ItemChatTextDiv>
+
+                            <ItemChatPic src="/src/assets/default-avatar-profile-icon-social-media-user-image-gray-avatar-icon-blank-profile-silhouette-illustration-vector.jpg" alt="" />
+                        </ItemChatList>
+
+
+                    </ChatList>
+                </RightMainPart>
             </div>
         </>
     )

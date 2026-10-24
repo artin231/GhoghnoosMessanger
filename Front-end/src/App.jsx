@@ -5,9 +5,10 @@ import NotFoundPage from './pages/Notfound'
 import MainPage from './pages/Mainpage'
 import { SignUpPage } from './pages/SignupPage'
 import { FuncContextProviderManager } from './Context/MessengerContext'
+import $ from 'jquery';
 
 function App() {
-
+	console.log($);
   return (
     <FuncContextProviderManager>
     <Router>
