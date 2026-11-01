@@ -23,6 +23,17 @@ class UserModel {
     }
   }
 
+  async GetUserByID(id) {
+    try {
+      let res = await pool.query(`SELECT * FROM user WHERE id = ?`, [id]);
+      let data = res[0];
+      return data;
+    } catch (err) {
+      console.log(err);
+      return { error: "there was a error" };
+    }
+  }
+
   async InsertUser(username, email, name, password) {
     try {
       let res = await pool.query(

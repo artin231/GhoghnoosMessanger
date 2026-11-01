@@ -1,5 +1,6 @@
 const UserModel = require("../models/UserModel.js");
 const Joi = require("joi");
+const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
 
 let user_model = new UserModel();
@@ -16,7 +17,30 @@ class UserHandler {
       if (validate.error) {
         res.status(400).send({ error: validate.error.message });
       } else {
-        res.send({ status: "passed" });
+        let db_res = await user_model.GetUserByEmail(req.body.email);
+        if (db_res.error) {
+          res.status(500).send({ error: "there was a error" });
+        } else {
+          if (db_res == 0) {
+            res.status(400).send({ error: "the username or password is not correct" });
+          } else {
+            let pass_check = await bcrypt.compare(req.body.password, db_res[0].password);
+            if (!pass_check) {
+              res.status(400).send({ error: "the username or password is not correct" });
+            } else {
+              let token = jwt.sign({ id: db_res[0].id }, process.env.SECRET_KEY, {
+                expiresIn: "1h",
+              });
+              res.cookie("token", token, {
+                httpOnly: true,
+                secure: true,
+                sameSite: "lax",
+                maxAge: 60 * 60 * 1000,
+              });
+              res.send({ status: "sucsses" });
+            }
+          }
+        }
       }
     } catch (err) {
       console.log(err);
@@ -74,7 +98,22 @@ class UserHandler {
   }
 
   async Profile(req, res) {
-    res.send("profile");
+    let user = await user_model.GetUserByID(req.userData.id);
+    if (user.error) {
+      res.status(500).send("there was a error");
+    } else {
+      if (user.length == 0) {
+        return res.send({ error: "the user was not found" });
+      } else {
+        let data_send = {
+          id: user[0].id,
+          name: user[0].name,
+          email: user[0].email,
+          date_joined: user[0].date_joined,
+        };
+        res.send(data_send);
+      }
+    }
   }
 
   async Logout(req, res) {
