@@ -1,0 +1,17 @@
+{
+"name": "غوغنوس مسنجر",
+"short_name": "غوغنوس",
+"description": "اپلیکیشن پیام‌رسان غوغنوس",
+"start_url": "/",
+"display": "standalone",
+"background_color": "#f5f7fa",
+"theme_color": "#5e72e4",
+"icons": [
+{
+"src": "static/images/icon.png",
+"sizes": "1024x1024",
+"type": "image/jpeg",
+"purpose": "any maskable"
+}
+]
+}
