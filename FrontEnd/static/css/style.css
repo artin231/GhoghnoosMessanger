@@ -1,26 +1,30 @@
 :root {
---color-primary: #5e72e4;
---color-primary-hover: #4c63d2;
---color-primary-light: rgba(94, 114, 228, 0.1);
---color-secondary: #f7fafc;
---color-background: #f5f7fa;
---color-surface: #ffffff;
---color-border: #e2e8f0;
---color-text: #1a202c;
---color-text-secondary: #4a5568;
---color-text-muted: #718096;
---color-error: #e53e3e;
---color-error-light: rgba(229, 62, 62, 0.1);
---color-success: #38a169;
---color-success-light: rgba(56, 161, 105, 0.1);
---color-warning: #d69e2e;
---color-warning-light: rgba(214, 158, 46, 0.1);
---shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
---shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
---shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+--color-primary: #fd6202;
+--color-primary-hover: #ff7a24;
+--color-primary-light: rgba(253, 98, 2, 0.14);
+--color-accent: #121123;
+--color-background: #0e0d1c;
+--color-surface: #171630;
+--color-surface-hover: #1f1e3a;
+--color-input: #14132a;
+--color-border: #2a2946;
+--color-border-strong: #3d3c63;
+--color-text: #f2f1fa;
+--color-text-secondary: #a8a6c4;
+--color-text-muted: #6d6b8c;
+--color-error: #f5424e;
+--color-error-light: rgba(245, 66, 78, 0.14);
+--color-success: #4ade80;
+--color-success-light: rgba(74, 222, 128, 0.14);
+--color-warning: #fbbf24;
+--color-warning-light: rgba(251, 191, 36, 0.14);
+--shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.3);
+--shadow-md: 0 4px 12px rgba(0, 0, 0, 0.35);
+--shadow-lg: 0 16px 40px rgba(0, 0, 0, 0.5);
+--shadow-glow: 0 0 24px rgba(253, 98, 2, 0.25);
 --radius-sm: 6px;
 --radius-md: 10px;
---radius-lg: 16px;
+--radius-lg: 18px;
 --radius-full: 9999px;
 --transition-fast: 150ms ease;
 --transition-base: 200ms ease;
@@ -90,6 +94,8 @@ font-size: var(--font-size-base);
 line-height: 1.6;
 color: var(--color-text);
 background-color: var(--color-background);
+background-image: radial-gradient(circle at 20% 0%, rgba(253, 98, 2, 0.07), transparent 45%), radial-gradient(circle at 80% 100%, rgba(253, 98, 2, 0.05), transparent 45%);
+background-attachment: fixed;
 min-height: 100vh;
 direction: rtl;
 }
@@ -117,6 +123,10 @@ cursor: pointer;
 font-family: inherit;
 }
 
+.bi {
+line-height: inherit;
+}
+
 .app {
 min-height: 100vh;
 display: flex;
@@ -127,11 +137,12 @@ padding: var(--spacing-4);
 
 .auth-container {
 width: 100%;
-max-width: 420px;
+max-width: 600px;
 }
 
 .auth-card {
 background: var(--color-surface);
+border: 1px solid var(--color-border);
 border-radius: var(--radius-lg);
 box-shadow: var(--shadow-lg);
 padding: var(--spacing-8);
@@ -139,16 +150,16 @@ padding: var(--spacing-8);
 
 .auth-header {
 text-align: center;
-margin-bottom: var(--spacing-8);
+margin-bottom: var(--spacing-6);
 }
 
 .auth-logo {
-width: 80px;
-height: 80px;
+width: 72px;
+height: 72px;
 border-radius: var(--radius-md);
 margin: 0 auto var(--spacing-4);
 object-fit: cover;
-box-shadow: var(--shadow-md);
+box-shadow: var(--shadow-md), var(--shadow-glow);
 }
 
 .auth-title {
@@ -171,6 +182,10 @@ margin-bottom: var(--spacing-6);
 
 .auth-tab {
 flex: 1;
+display: inline-flex;
+align-items: center;
+justify-content: center;
+gap: var(--spacing-2);
 padding: var(--spacing-3) var(--spacing-4);
 font-size: var(--font-size-base);
 font-weight: 600;
@@ -180,8 +195,12 @@ margin-bottom: -2px;
 transition: all var(--transition-fast);
 }
 
+.auth-tab .bi {
+font-size: 1.1em;
+}
+
 .auth-tab:hover {
-color: var(--color-text);
+color: var(--color-text-secondary);
 }
 
 .auth-tab.active {
@@ -221,52 +240,67 @@ gap: var(--spacing-4);
 display: block;
 font-size: var(--font-size-sm);
 font-weight: 500;
-color: var(--color-text);
+color: var(--color-text-secondary);
 margin-bottom: var(--spacing-2);
 }
 
-.form-group input {
-width: 100%;
-padding: var(--spacing-3) var(--spacing-4);
-font-size: var(--font-size-base);
-color: var(--color-text);
-background: var(--color-surface);
-border: 1px solid var(--color-border);
-border-radius: var(--radius-md);
-transition: all var(--transition-fast);
-}
-
-.form-group input::placeholder {
-color: var(--color-text-muted);
-opacity: 0.7;
-}
-
-.form-group input:hover {
-border-color: var(--color-text-muted);
-}
-
-.form-group input:focus {
-outline: none;
-border-color: var(--color-primary);
-box-shadow: 0 0 0 3px var(--color-primary-light);
-}
-
-.form-group input:invalid:not(:placeholder-shown) {
-border-color: var(--color-error);
-}
-
-.form-group input:invalid:not(:placeholder-shown):focus {
-box-shadow: 0 0 0 3px var(--color-error-light);
-}
-
-.password-wrapper {
+.input-wrapper {
 position: relative;
 display: flex;
 align-items: center;
 }
 
+.input-icon {
+position: absolute;
+right: var(--spacing-4);
+color: var(--color-text-muted);
+font-size: 1rem;
+pointer-events: none;
+transition: color var(--transition-fast);
+}
+
+.input-wrapper input {
+width: 100%;
+padding: var(--spacing-3) var(--spacing-4);
+padding-right: 2.75rem;
+font-size: var(--font-size-base);
+color: var(--color-text);
+background: var(--color-input);
+border: 1px solid var(--color-border);
+border-radius: var(--radius-md);
+transition: all var(--transition-fast);
+}
+
+.input-wrapper input::placeholder {
+color: var(--color-text-muted);
+opacity: 0.8;
+}
+
+.input-wrapper input:hover {
+border-color: var(--color-border-strong);
+}
+
+.input-wrapper input:focus {
+outline: none;
+border-color: var(--color-primary);
+box-shadow: 0 0 0 3px var(--color-primary-light);
+}
+
+.input-wrapper input:focus ~ .input-icon,
+.input-wrapper input:focus + .password-toggle {
+color: var(--color-primary);
+}
+
+.input-wrapper input:invalid:not(:placeholder-shown) {
+border-color: var(--color-error);
+}
+
+.input-wrapper input:invalid:not(:placeholder-shown):focus {
+box-shadow: 0 0 0 3px var(--color-error-light);
+}
+
 .password-wrapper input {
-padding-left: 48px;
+padding-left: 3.25rem;
 }
 
 .password-toggle {
@@ -278,12 +312,13 @@ display: flex;
 align-items: center;
 justify-content: center;
 border-radius: var(--radius-sm);
-transition: color var(--transition-fast);
+transition: all var(--transition-fast);
+font-size: 1.1rem;
 }
 
 .password-toggle:hover {
 color: var(--color-text);
-background: var(--color-secondary);
+background: var(--color-surface-hover);
 }
 
 .password-strength {
@@ -344,7 +379,7 @@ color: #ffffff;
 .btn-primary:hover {
 background: var(--color-primary-hover);
 transform: translateY(-1px);
-box-shadow: var(--shadow-md);
+box-shadow: var(--shadow-md), var(--shadow-glow);
 }
 
 .btn-primary:active {
@@ -371,8 +406,8 @@ border-radius: var(--radius-md);
 }
 
 .auth-logo {
-width: 70px;
-height: 70px;
+width: 64px;
+height: 64px;
 }
 
 .auth-title {
