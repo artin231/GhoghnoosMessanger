@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#0e0d1c">
+<title>پیام‌رسان ققنوس</title>
+<link rel="icon" type="image/jpeg" href="static/images/icon.png">
+<link rel="apple-touch-icon" href="static/images/icon.png">
+<link rel="manifest" href="manifest.json">
+<link rel="stylesheet" href="static/css/bootstrap-icons.min.css">
+<link rel="stylesheet" href="static/css/style.css">
+</head>
+<body>
+<div class="app">
+<div class="auth-container">
+<div class="auth-card">
+<div class="auth-header">
+<img src="static/images/icon.png" alt="پیام‌رسان ققنوس" class="auth-logo">
+<h1 class="auth-title">پیام‌رسان ققنوس</h1>
+<p class="auth-subtitle">ورود یا ثبت‌نام کنید</p>
+</div>
+
+<div class="auth-tabs" role="tablist">
+<button role="tab" class="auth-tab active" data-tab="login" aria-selected="true"><i class="bi bi-box-arrow-in-left"></i><span>ورود</span></button>
+<button role="tab" class="auth-tab" data-tab="signup" aria-selected="false"><i class="bi bi-person-plus"></i><span>ثبت‌نام</span></button>
+</div>
+
+<div class="auth-forms">
+<form class="auth-form active" id="login-form" role="tabpanel">
+<div class="form-group">
+<label for="login-email">ایمیل</label>
+<div class="input-wrapper">
+<i class="bi bi-envelope input-icon"></i>
+<input type="email" id="login-email" name="email" autocomplete="email" required placeholder="example@domain.com">
+</div>
+</div>
+<div class="form-group">
+<label for="login-password">رمز عبور</label>
+<div class="input-wrapper password-wrapper">
+<i class="bi bi-lock input-icon"></i>
+<input type="password" id="login-password" name="password" autocomplete="current-password" required placeholder="رمز عبور">
+<button type="button" class="password-toggle" aria-label="نمایش رمز عبور">
+<i class="bi bi-eye"></i>
+</button>
+</div>
+</div>
+<button type="submit" class="btn btn-primary btn-block">ورود</button>
+</form>
+
+<form class="auth-form" id="signup-form" role="tabpanel" hidden>
+<div class="form-row">
+<div class="form-group">
+<label for="signup-firstname">نام</label>
+<div class="input-wrapper">
+<i class="bi bi-person input-icon"></i>
+<input type="text" id="signup-firstname" name="firstName" autocomplete="given-name" required placeholder="نام">
+</div>
+</div>
+<div class="form-group">
+<label for="signup-lastname">نام خانوادگی</label>
+<div class="input-wrapper">
+<i class="bi bi-person input-icon"></i>
+<input type="text" id="signup-lastname" name="lastName" autocomplete="family-name" required placeholder="نام خانوادگی">
+</div>
+</div>
+</div>
+<div class="form-group">
+<label for="signup-username">نام کاربری</label>
+<div class="input-wrapper">
+<i class="bi bi-at input-icon"></i>
+<input type="text" id="signup-username" name="username" autocomplete="username" required placeholder="username" pattern="[a-zA-Z0-9_]{3,30}" title="فقط حروف انگلیسی، اعداد و زیرخط (۳ تا ۳۰ کاراکتر)">
+</div>
+</div>
+<div class="form-group">
+<label for="signup-email">ایمیل</label>
+<div class="input-wrapper">
+<i class="bi bi-envelope input-icon"></i>
+<input type="email" id="signup-email" name="email" autocomplete="email" required placeholder="example@domain.com">
+</div>
+</div>
+<div class="form-group">
+<label for="signup-password">رمز عبور</label>
+<div class="input-wrapper password-wrapper">
+<i class="bi bi-lock input-icon"></i>
+<input type="password" id="signup-password" name="password" autocomplete="new-password" required placeholder="رمز عبور" minlength="6">
+<button type="button" class="password-toggle" aria-label="نمایش رمز عبور">
+<i class="bi bi-eye"></i>
+</button>
+</div>
+<div class="password-strength" aria-live="polite"></div>
+</div>
+<div class="form-group">
+<label for="signup-confirm">تکرار رمز عبور</label>
+<div class="input-wrapper password-wrapper">
+<i class="bi bi-lock input-icon"></i>
+<input type="password" id="signup-confirm" name="confirmPassword" autocomplete="new-password" required placeholder="تکرار رمز عبور">
+<button type="button" class="password-toggle" aria-label="نمایش رمز عبور">
+<i class="bi bi-eye"></i>
+</button>
+</div>
+</div>
+<button type="submit" class="btn btn-primary btn-block">ثبت‌نام</button>
+</form>
+</div>
+
+<p class="auth-footer">پیام‌رسان ققنوس &copy; 2026</p>
+</div>
+</div>
+</div>
+
+<script src="static/js/auth.js"></script>
+</body>
+</html>

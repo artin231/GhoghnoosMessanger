@@ -1,0 +1,17 @@
+{
+"name": "پیام‌رسان ققنوس",
+"short_name": "ققنوس",
+"description": "اپلیکیشن پیام‌رسان ققنوس",
+"start_url": "/",
+"display": "standalone",
+"background_color": "#0e0d1c",
+"theme_color": "#0e0d1c",
+"icons": [
+{
+"src": "static/images/icon.png",
+"sizes": "1024x1024",
+"type": "image/jpeg",
+"purpose": "any maskable"
+}
+]
+}
