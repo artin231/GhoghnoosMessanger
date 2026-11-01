@@ -25,8 +25,6 @@
 ---
 
 ## 🔙 Back End
-<img src="Readme/ExpressJS-Dark.svg" width="100" alt="Express"/>
-<img src="Readme/NodeJS-Dark.svg" width="100" alt="NodeJS"/>
 <img src="Readme/MySQL-Dark.svg" width="100" alt="MySQL"/>
 
 ---
