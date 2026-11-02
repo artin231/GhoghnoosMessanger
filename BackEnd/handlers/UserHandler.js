@@ -117,7 +117,17 @@ class UserHandler {
   }
 
   async Logout(req, res) {
-    res.send("logout");
+    try {
+      res.clearCookie("token", {
+        httpOnly: true,
+        secure: true,
+        sameSite: "lax",
+      });
+      res.send({ status: "succses" });
+    } catch (er) {
+      console.log(er);
+      return res.status(500).send({ error: "there was a error" });
+    }
   }
 }
 
