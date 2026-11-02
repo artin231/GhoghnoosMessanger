@@ -358,6 +358,34 @@ width: 100%;
 background: var(--color-success);
 }
 
+.form-alert {
+display: flex;
+align-items: center;
+gap: var(--spacing-2);
+padding: var(--spacing-3) var(--spacing-4);
+font-size: var(--font-size-sm);
+font-weight: 500;
+border-radius: var(--radius-md);
+margin-bottom: var(--spacing-5);
+}
+
+.form-alert .bi {
+font-size: 1.1em;
+flex-shrink: 0;
+}
+
+.form-alert.error {
+color: var(--color-error);
+background: var(--color-error-light);
+border: 1px solid var(--color-error);
+}
+
+.form-alert.success {
+color: var(--color-success);
+background: var(--color-success-light);
+border: 1px solid var(--color-success);
+}
+
 .btn {
 display: inline-flex;
 align-items: center;

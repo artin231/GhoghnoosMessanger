@@ -1,6 +1,45 @@
-/*!
+/*
  * Eggy JS 1.0.0
 */
+
+const EGGY_ICONS = {
+success: '<i class="bi bi-check-circle-fill"></i>',
+info: '<i class="bi bi-info-circle-fill"></i>',
+warning: '<i class="bi bi-exclamation-triangle-fill"></i>',
+error: '<i class="bi bi-x-circle-fill"></i>',
+close: '<button type="button" class="close-btn"><i class="bi bi-x"></i></button>'
+};
+
+const EGGY_CSS = `
+.eggy { position: fixed; z-index: 9999; display: flex; flex-direction: column; gap: 0.625rem; pointer-events: none; }
+.eggy.top-right { top: 1.25rem; left: 1.25rem; }
+.eggy.top-left { top: 1.25rem; right: 1.25rem; }
+.eggy.bottom-right { bottom: 1.25rem; left: 1.25rem; }
+.eggy.bottom-left { bottom: 1.25rem; right: 1.25rem; }
+.eggy .eggy, .eggy > div { pointer-events: auto; }
+.eggy > div { position: relative; overflow: hidden; display: flex; align-items: flex-start; gap: 0.625rem; min-width: 18rem; max-width: 22rem; padding: 0.875rem 1rem; border-radius: 10px; box-shadow: 0 16px 40px rgba(0, 0, 0, 0.5); font-size: 0.875rem; line-height: 1.5; direction: rtl; text-align: right; opacity: 0; transform: translateY(8px); transition: opacity 0.25s ease, transform 0.25s ease; }
+.eggy > div.open { opacity: 1; transform: translateY(0); }
+.eggy > div.closing { opacity: 0; transform: translateY(8px); }
+.eggy > div > .title, .eggy > div > .message { font-family: 'Vazirmatn', system-ui, sans-serif; }
+.eggy > div .title { font-size: 0.9375rem; font-weight: 700; margin-bottom: 0.125rem; }
+.eggy > div .message { opacity: 0.85; }
+.eggy > div > .bi { font-size: 1.25rem; margin-top: 0.125rem; }
+.eggy > div .close-btn { position: absolute; top: 0.5rem; left: 0.5rem; color: inherit; opacity: 0.55; padding: 0.25rem; display: flex; align-items: center; justify-content: center; border-radius: 6px; transition: opacity 0.15s ease, background 0.15s ease; }
+.eggy > div .close-btn:hover { opacity: 1; background: rgba(255, 255, 255, 0.08); }
+.eggy > div .close-btn .bi { font-size: 0.875rem; }
+.eggy > div > .progress-bar { position: absolute; bottom: 0; right: 0; left: 0; height: 3px; transform-origin: left center; animation: eggy-progress linear forwards; }
+@keyframes eggy-progress { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+`;
+
+const EGGY_CSS_THEME = `
+.eggy .eggy-success, .eggy div.success { background: #1d2b22; color: #4ade80; border: 1px solid rgba(74, 222, 128, 0.35); }
+.eggy .eggy-info, .eggy div.info { background: #182031; color: #93c5fd; border: 1px solid rgba(147, 197, 253, 0.35); }
+.eggy .eggy-warning, .eggy div.warning { background: #2b2413; color: #fbbf24; border: 1px solid rgba(251, 191, 36, 0.35); }
+.eggy .eggy-error, .eggy div.error { background: #2b1a1d; color: #f5424e; border: 1px solid rgba(245, 66, 78, 0.35); }
+`;
+
+const EGGY_CSS_PROGRESS_BAR = `.eggy .progress-bar { background: currentColor; opacity: 0.4; }
+`;
 
 class Builder {
 
@@ -164,23 +203,23 @@ class Builder {
 
     /**
      * Get the icons content
-     * 
+     *
      * @return {Promise}
     */
     async getIconContent(){
         //Switch the type
         switch(this.options.type){
             case 'success':
-                return '{{ICON_SUCCESS}}';
+                return EGGY_ICONS.success;
             break;
             case 'info':
-                return '{{ICON_INFO}}';
+                return EGGY_ICONS.info;
             break;
             case 'warning':
-                return '{{ICON_WARNING}}';
+                return EGGY_ICONS.warning;
             break;
             case 'error':
-                return '{{ICON_ERROR}}';
+                return EGGY_ICONS.error;
             break;
         }
     }
@@ -188,11 +227,11 @@ class Builder {
 
     /**
      * Get the close content
-     * 
+     *
      * @return {Promise}
     */
     async getCloseBtnContent(){
-        return '{{ICON_CLOSE}}';
+        return EGGY_ICONS.close;
     }
 
 
@@ -209,7 +248,7 @@ class Builder {
             //Add a class
             styles.classList.add('eggy-styles');
             //Populate it
-            styles.innerHTML = '{{CSS_STYLES}}';
+            styles.textContent = EGGY_CSS;
             //Add to the head
             document.querySelector('head').appendChild(styles);
         }
@@ -229,7 +268,7 @@ class Builder {
             //Add a class
             styles.classList.add('eggy-theme');
             //Populate it
-            styles.innerHTML = '{{CSS_THEME}}';
+            styles.textContent = EGGY_CSS_THEME;
             //Add to the head
             document.querySelector('head').appendChild(styles);
         }
@@ -258,8 +297,7 @@ class Builder {
             let toast_id = toast.getAttribute('id'),
                 progressBarStyles = document.createElement('style');
             //Build the content
-            progressBarStyles.innerHTML = `{{CSS_PROGRESS_BAR}}`;
-            progressBarStyles.innerHTML += `#${toast_id} > .progress-bar { animation-duration: ${duration}s }`;
+            progressBarStyles.textContent = `${EGGY_CSS_PROGRESS_BAR}#${toast_id} > .progress-bar { animation-duration: ${duration}s }`;
             toast.appendChild(progressBarStyles);
         }
         //Append it to the toast
@@ -312,8 +350,8 @@ class Builder {
 
 }
 
-//Export the Eggy function for use
-export const Eggy = async (options) => {
+//Expose Eggy on the global scope for plain script usage
+window.Eggy = async (options) => {
     //Start a new Eggy Toast
     let newBuild = new Builder(options);
     //Run the build
