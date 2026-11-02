@@ -9,22 +9,8 @@
 <img src="Readme/HTML.svg" width="100" alt="HTML"/>
 <img src="Readme/CSS.svg" width="100" alt="CSS"/>
 <img src="Readme/JavaScript.svg" width="100" alt="JavaScript"/>
-<img src="Readme/React-Dark.svg" width="100" alt="React"/>
-<img src="Readme/ExpressJS-Dark.svg" width="100" alt="Express"/>
 <img src="Readme/NodeJS-Dark.svg" width="100" alt="NodeJS"/>
-<img src="Readme/MySQL-Dark.svg" width="100" alt="MySQL"/>
-
----
-
-## ❇️ Front End
-<img src="Readme/HTML.svg" width="100" alt="HTML"/>
-<img src="Readme/CSS.svg" width="100" alt="CSS"/>
-<img src="Readme/JavaScript.svg" width="100" alt="JavaScript"/>
-<img src="Readme/React-Dark.svg" width="100" alt="React"/>
-
----
-
-## 🔙 Back End
+<img src="Readme/ExpressJS-Dark.svg" width="100" alt="Express"/>
 <img src="Readme/MySQL-Dark.svg" width="100" alt="MySQL"/>
 
 ---
