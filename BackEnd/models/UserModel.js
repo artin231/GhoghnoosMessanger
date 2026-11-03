@@ -3,7 +3,7 @@ const pool = require("../utils/modelUtil.js");
 class UserModel {
   async GetUserByEmail(email) {
     try {
-      let res = await pool.query(`SELECT * FROM user WHERE email = ?`, [email]);
+      let res = await pool.query(`SELECT * FROM users WHERE email = ?`, [email]);
       let data = res[0];
       return data;
     } catch (err) {
@@ -14,7 +14,7 @@ class UserModel {
 
   async GetUserByUserName(username) {
     try {
-      let res = await pool.query(`SELECT * FROM user WHERE username = ?`, [username]);
+      let res = await pool.query(`SELECT * FROM users WHERE username = ?`, [username]);
       let data = res[0];
       return data;
     } catch (err) {
@@ -25,7 +25,7 @@ class UserModel {
 
   async GetUserByID(id) {
     try {
-      let res = await pool.query(`SELECT * FROM user WHERE id = ?`, [id]);
+      let res = await pool.query(`SELECT * FROM users WHERE id = ?`, [id]);
       let data = res[0];
       return data;
     } catch (err) {
@@ -37,7 +37,7 @@ class UserModel {
   async InsertUser(username, email, name, password) {
     try {
       let res = await pool.query(
-        `INSERT INTO user (username,email,name,password) VALUES (?,?,?,?)`,
+        `INSERT INTO users (username,email,display_name,password) VALUES (?,?,?,?)`,
         [username, email, name, password],
       );
       return res;
